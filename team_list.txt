@@ -1,0 +1,220 @@
+701 3   /3/
+702 A   /a/
+703 ACO /aco/
+704 ADV /adv/
+705 AN  /an/
+706 ASP /asp/
+707 B   /b/
+708 BNT /bant/
+709 BIZ /biz/
+710 C   /c/
+711 CGL /cgl/
+712 CK  /ck/
+713 CM  /cm/
+714 CO  /co/
+715 D   /d/
+716 DIY /diy/
+717 E   /e/
+718 F   /f/
+719 FA  /fa/
+720 FIT /fit/
+721 G   /g/
+722 GD  /gd/
+723 GIF /gif/
+724 H   /h/
+725 HIS /his/
+726 HM  /hm/
+727 HR  /hr/
+728 I   /i/
+729 IC  /ic/
+730 INT /int/
+731 JP  /jp/
+732 K   /k/
+733 HBT /lgbt/
+734 LIT /lit/
+735 M   /m/
+736 MLP /mlp/
+737 MU  /mu/
+738 N   /n/
+739 O   /o/
+740 OUT /out/
+741 P   /p/
+742 PO  /po/
+743 POL /pol/
+744 PW  /pw/
+745 R9K /r9k/
+746 S   /s/
+747 S4S /s4s/
+748 SCI /sci/
+749 SOC /soc/
+750 SP  /sp/
+751 T   /t/
+752 TG  /tg/
+753 TOY /toy/
+754 TRV /trv/
+755 TV  /tv/
+756 U   /u/
+757 V   /v/
+758 VG  /vg/
+759 VM  /vm/
+760 VMG /vmg/
+761 VP  /vp/
+762 VR  /vr/
+763 VRP /vrpg/
+764 VST /vst/
+765 VT  /vt/
+766 W   /w/
+767 WG  /wg/
+768 WSG /wsg/
+769 X   /x/
+770 XS  /xs/
+771 Y   /y/
+772 B1  Backup 1
+773 B2  Backup 2
+774 B3  Backup 3
+775 B4  Backup 4
+776 B5  Backup 5
+777 B6  Backup 6
+778 B7  Backup 7
+779 B8  Backup 8
+780 B9  Backup 9
+781 V1  VGL 1
+782 V2  VGL 2
+783 V3  VGL 3
+784 V4  VGL 4
+785 V5  VGL 5
+786 V6  VGL 6
+787 V7  VGL 7
+788 V8  VGL 8
+789 V9  VGL 9
+790 V10 VGL 10
+791 V11 VGL 11
+792 V12 VGL 12
+793 V13 VGL 13
+794 V14 VGL 14
+795 V15 VGL 15
+796 V16 VGL 16
+797 V17 VGL 17
+798 V18 VGL 18
+799 V19 VGL 19
+800 V20 VGL 20
+801 V21 VGL 21
+802 V22 VGL 22
+803 V23 VGL 23
+804 V24 VGL 24
+805 V25 VGL 25
+806 V26 VGL 26
+807 V27 VGL 27
+808 V28 VGL 28
+809 V29 VGL 29
+810 V30 VGL 30
+811 V31 VGL 31
+812 V32 VGL 32
+813 V33 VGL 33
+814 V34 VGL 34
+815 V35 VGL 35
+816 V36 VGL 36
+817 V37 VGL 37
+818 V38 VGL 38
+819 V39 VGL 39
+820 V40 VGL 40
+821 V41 VGL 41
+822 V42 VGL 42
+823 V43 VGL 43
+824 V44 VGL 44
+825 V45 VGL 45
+826 V46 VGL 46
+827 V47 VGL 47
+828 V48 VGL 48
+829 V49 VGL 49
+830 V50 VGL 50
+831 V51 VGL 51
+832 V52 VGL 52
+833 V53 VGL 53
+834 V54 VGL 54
+835 V55 VGL 55
+836 V56 VGL 56
+837 V57 VGL 57
+838 V58 VGL 58
+839 V59 VGL 59
+840 V60 VGL 60
+841 V61 VGL 61
+842 V62 VGL 62
+843 V63 VGL 63
+844 V64 VGL 64
+845 V65 VGL 65
+846 V66 VGL 66
+847 V67 VGL 67
+848 V68 VGL 68
+849 V69 VGL 69
+850 V70 VGL 70
+851 I1  Invitational 1
+852 I2  Invitational 2
+853 I3  Invitational 3
+854 I4  Invitational 4
+855 I5  Invitational 5
+856 I6  Invitational 6
+857 I7  Invitational 7
+858 I8  Invitational 8
+859 I9  Invitational 9
+860 I10 Invitational 10
+861 I11 Invitational 11
+862 I12 Invitational 12
+863 I13 Invitational 13
+864 I14 Invitational 14
+865 I15 Invitational 15
+866 I16 Invitational 16
+867 I17 Invitational 17
+868 I18 Invitational 18
+869 I19 Invitational 19
+870 I20 Invitational 20
+871 I21 Invitational 21
+872 I22 Invitational 22
+873 I23 Invitational 23
+874 I24 Invitational 24
+875 I25 Invitational 25
+876 I26 Invitational 26
+877 I27 Invitational 27
+878 I28 Invitational 28
+879 I29 Invitational 29
+880 I30 Invitational 30
+881 I31 Invitational 31
+882 I32 Invitational 32
+883 I33 Invitational 33
+884 I34 Invitational 34
+885 I35 Invitational 35
+886 I36 Invitational 36
+887 I37 Invitational 37
+888 I38 Invitational 38
+889 I39 Invitational 39
+890 I40 Invitational 40
+891 I41 Invitational 41
+892 I42 Invitational 42
+893 I43 Invitational 43
+894 I44 Invitational 44
+895 I45 Invitational 45
+896 I46 Invitational 46
+897 I47 Invitational 47
+898 I48 Invitational 48
+899 I49 Invitational 49
+900 I50 Invitational 50
+901 I51 Invitational 51
+902 I52 Invitational 52
+903 I53 Invitational 53
+904 I54 Invitational 54
+905 I55 Invitational 55
+906 I56 Invitational 56
+907 I57 Invitational 57
+908 I58 Invitational 58
+909 I59 Invitational 59
+910 I60 Invitational 60
+911 I61 Invitational 61
+912 I62 Invitational 62
+913 I63 Invitational 63
+914 I64 Invitational 64
+915 I65 Invitational 65
+916 I66 Invitational 66
+917 I67 Invitational 67
+918 I68 Invitational 68
+919 I69 Invitational 69
+920 I70 Invitational 70
