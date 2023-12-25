@@ -7,7 +7,7 @@ for _ in range(220):
     manager_entry = [
         struct.pack('<I', int(manager_id)),  # Manager ID
         struct.pack('<H', 231),  # Manger Nationality
-        bytearray(10),
+        bytearray(2),
         'マネージャー'.encode('utf-8'),  # Manager Japanese Name
         bytearray(28),
         'MANAGER'.encode('utf-8'),  # Manager English Name

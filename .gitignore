@@ -3,6 +3,7 @@ venv/
 Coach.bin
 CompetitionEntry.bin
 Player.bin
+Player_Edit.bin
 PlayerAppearance.bin
 PlayerAssignment.bin
 Team.bin

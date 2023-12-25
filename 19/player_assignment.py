@@ -12,7 +12,7 @@ for _ in range(220):
             struct.pack('<I', assign_index),  # Assign Index
             struct.pack('<I', player_id),  # Player ID
             struct.pack('<I', team_id),  # Team ID
-            struct.pack('<I', player_index)  # Player Team Order
+            struct.pack('<I', player_index-1)  # Player Team Order
         ]
         player_assignments.append(b''.join(assign_entry))
         player_index += 1

@@ -15,9 +15,8 @@ def entry_gen(team_id: int, entry_index: int, competition_index: int, competitio
         struct.pack('<I', int(team_id)),  # Team ID
         bytearray(2),
         struct.pack('<H', entry_index),  # Entry ID
-        bytearray(1),
-        struct.pack('B', competition_index),  # Entry Order
-        struct.pack('<H', competition_id)  # Competition ID
+        struct.pack('<H', competition_id),  # Competition ID
+        struct.pack('<H', competition_index)  # Entry Order
     ]
     return b''.join(competition_entry)
 
