@@ -12,7 +12,7 @@ In order to fix the EDIT file you need to:
 1. Decrypt it with [pesXdecrypter](https://github.com/the4chancup/pesXdecrypter) using the `decrypter19.exe` executable.
 2. Open `data.dat` file with your favourite hex editor.
 3. Go to the `0x60` offset and set the player count necessary. In my case it's 5060 which is `0xC413` converted to hexadecimal.
-4. Generate player edit data using the `player_edit.py` script.
+4. Generate player edit data using the `player_edit_19.py` script.
 5. Copy the data from the `Player_Edit.bin` file to the `0x7C` offset of `data.dat` and save.
 6. Now encrypt it with [pesXdecrypter](https://github.com/the4chancup/pesXdecrypter) using the `encrypter19.exe` executable.\
 You should now have a working EDIT file.

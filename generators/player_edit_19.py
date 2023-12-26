@@ -2,10 +2,11 @@ import struct
 
 team_id = 701
 players = []
-player_bin = open(r'Bin Files\Player_Edit_Base.bin', 'rb').read()
+amount = len(open('../team_list.txt', 'r').read().split('\n'))
+player_bin = open(r'Bin Files\Player_Edit_Base_19.bin', 'rb').read()
 appearance_bin = open(r'Bin Files\PlayerAppearance_Base.bin', 'rb').read()
 
-for _ in range(220):
+for _ in range(amount):
     player_index = 1
     for _ in range(23):
         player_id = int('{}{}'.format(team_id, f'0{player_index}' if player_index < 10 else player_index))
