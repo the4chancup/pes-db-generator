@@ -22,3 +22,7 @@ You should now have a working EDIT file.
 
 > [!CAUTION]
 > Make sure you replace existing bytes, don't insert new bytes.
+
+### Pro Evolution Soccer 2015
+#### Database
+Using `Competition.bin`, `CompetitionKind.bin` and `CompetitionRegulation.bin` in the DLC crashes the game.

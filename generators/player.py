@@ -31,12 +31,10 @@ def player_gen(pes_ver: int, team_amount: int, output_loc: str):
     team_id = 701
     players = []
 
-    """
     if pes_ver == 15:
         player_entry = player_entry_15
-        player_bin = open(r'bin\\Player_Base_15.bin', 'rb').read()
-    """
-    if pes_ver == 16:
+        player_bin = open(r'bin\Player_Base_15.bin', 'rb').read()
+    elif pes_ver == 16:
         player_entry = player_entry_19
         player_bin = open(r'bin\Player_Base_16.bin', 'rb').read()
     elif pes_ver == 17:
@@ -68,11 +66,10 @@ def player_gen(pes_ver: int, team_amount: int, output_loc: str):
 if __name__ == '__main__':
     pes_version = input('Enter the PES version of what the "Player.bin" needs to be generated for: ')
     amount = len(open('../team_list.txt', 'r').read().split('\n'))
-    """
+
     if '15' in pes_version:
         player_gen(15, amount, 'Player.bin')
-    """
-    if '16' in pes_version:
+    elif '16' in pes_version:
         player_gen(16, amount, 'Player.bin')
     elif '17' in pes_version:
         player_gen(17, amount, 'Player.bin')
