@@ -218,4 +218,4 @@ if __name__ == '__main__':
     elif ('20' in pes_version) or ('21' in pes_version):
         team_gen(20, data, 'Team.bin')
     else:
-        raise ValueError("Unsupported PES Version.")
+        raise ValueError('Unsupported PES Version.')

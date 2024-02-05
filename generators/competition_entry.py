@@ -38,7 +38,7 @@ def comp_entry_gen(pes_ver: int, team_list: str, output_loc: str):
     elif pes_ver in [19, 20, 21]:
         comp_entry = comp_entry_19
     else:
-        raise ValueError("Unsupported PES Version.")
+        raise ValueError('Unsupported PES Version.')
 
     for team_data in team_list.split('\n'):
         team_id, _, team_name = re.match(r'(\d{3}) (\w*) +(.*)', team_data).groups()
@@ -63,9 +63,9 @@ def comp_entry_gen(pes_ver: int, team_list: str, output_loc: str):
 if __name__ == '__main__':
     pes_version = input('Enter the PES version of what the "CompetitionEntry.bin" needs to be generated for: ')
     data = open('../team_list.txt', 'r').read()
-    if any(["15" in pes_version, "16" in pes_version, "17" in pes_version, "18" in pes_version]):
+    if any(['15' in pes_version, '16' in pes_version, '17' in pes_version, '18' in pes_version]):
         comp_entry_gen(15, data, 'CompetitionEntry.bin')
-    elif any(["19" in pes_version, "20" in pes_version, "21" in pes_version]):
+    elif any(['19' in pes_version, '20' in pes_version, '21' in pes_version]):
         comp_entry_gen(19, data, 'CompetitionEntry.bin')
     else:
-        raise ValueError("Unsupported PES Version.")
+        raise ValueError('Unsupported PES Version.')

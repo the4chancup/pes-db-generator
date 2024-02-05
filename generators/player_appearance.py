@@ -1,10 +1,16 @@
 import struct
 
 
-def player_appearance_gen(team_amount: int, output_loc: str):
+def player_appearance_gen(pes_ver: int, team_amount: int, output_loc: str):
     team_id = 701
     player_appearances = []
-    appearance_bin = open(r'bin\PlayerAppearance_Base.bin', 'rb').read()
+
+    if pes_ver == 15:
+        appearance_bin = open(r'bin\PlayerAppearance_Base_15.bin', 'rb').read()
+    elif pes_ver in [16, 17, 18, 19, 20, 21]:
+        appearance_bin = open(r'bin\PlayerAppearance_Base_16.bin', 'rb').read()
+    else:
+        raise ValueError('Unsupported PES Version.')
 
     for _ in range(team_amount):
         player_index = 1
@@ -22,5 +28,18 @@ def player_appearance_gen(team_amount: int, output_loc: str):
 
 
 if __name__ == '__main__':
+    pes_version = input('Enter the PES version of what the "Player.bin" needs to be generated for: ')
     amount = len(open('../team_list.txt', 'r').read().split('\n'))
-    player_appearance_gen(amount, 'PlayerAppearance.bin')
+    sixteen_plus_check = any(
+        [
+            '16' in pes_version, '17' in pes_version, '18' in pes_version,
+            '19' in pes_version, '20' in pes_version, '21' in pes_version
+        ]
+    )
+
+    if '15' in pes_version:
+        player_appearance_gen(15, amount, 'PlayerAppearance.bin')
+    elif sixteen_plus_check:
+        player_appearance_gen(16, amount, 'PlayerAppearance.bin')
+    else:
+        raise ValueError('Unsupported PES Version.')

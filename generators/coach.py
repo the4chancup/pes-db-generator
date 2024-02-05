@@ -36,7 +36,7 @@ def coach_gen(pes_ver: int, team_amount: int, output_loc: str):
     elif pes_ver in [19, 20, 21]:
         coach_entry = coach_entry_19
     else:
-        raise ValueError("Unsupported PES Version.")
+        raise ValueError('Unsupported PES Version.')
 
     for _ in range(team_amount):
         coaches.append(coach_entry(coach_id))
@@ -48,9 +48,9 @@ def coach_gen(pes_ver: int, team_amount: int, output_loc: str):
 if __name__ == '__main__':
     pes_version = input('Enter the PES version of what the "Coach.bin" needs to be generated for: ')
     amount = len(open('../team_list.txt', 'r').read().split('\n'))
-    if any(["15" in pes_version, "16" in pes_version, "17" in pes_version, "18" in pes_version]):
+    if any(['15' in pes_version, '16' in pes_version, '17' in pes_version, '18' in pes_version]):
         coach_gen(15, amount, 'Coach.bin')
-    elif any(["19" in pes_version, "20" in pes_version, "21" in pes_version]):
+    elif any(['19' in pes_version, '20' in pes_version, '21' in pes_version]):
         coach_gen(19, amount, 'Coach.bin')
     else:
-        raise ValueError("Unsupported PES Version.")
+        raise ValueError('Unsupported PES Version.')

@@ -50,7 +50,7 @@ def player_gen(pes_ver: int, team_amount: int, output_loc: str):
         player_entry = player_entry_17
         player_bin = open(r'bin\Player_Base_20.bin', 'rb').read()
     else:
-        raise ValueError("Unsupported PES Version.")
+        raise ValueError('Unsupported PES Version.')
 
     for _ in range(team_amount):
         player_index = 1
@@ -80,4 +80,4 @@ if __name__ == '__main__':
     elif ('20' in pes_version) or ('21' in pes_version):
         player_gen(20, amount, 'Player.bin')
     else:
-        raise ValueError("Unsupported PES Version.")
+        raise ValueError('Unsupported PES Version.')
