@@ -4,7 +4,7 @@ import struct
 
 def comp_entry_15(team_id: int, entry_index: int, comp_index: int, comp_id: int) -> bytes:
     competition_entry = [
-        struct.pack('<I', int(team_id)),  # Team ID
+        struct.pack('<I', team_id),  # Team ID
         bytearray(2),
         struct.pack('<H', entry_index),  # Entry ID
         bytearray(1),
@@ -16,7 +16,7 @@ def comp_entry_15(team_id: int, entry_index: int, comp_index: int, comp_id: int)
 
 def comp_entry_19(team_id: int, entry_index: int, comp_index: int, comp_id: int) -> bytes:
     competition_entry = [
-        struct.pack('<I', int(team_id)),  # Team ID
+        struct.pack('<I', team_id),  # Team ID
         bytearray(2),
         struct.pack('<H', entry_index),  # Entry ID
         struct.pack('<H', comp_id),  # Competition ID
@@ -43,17 +43,17 @@ def comp_entry_gen(pes_ver: int, team_list: str, output_loc: str):
     for team_data in team_list.split('\n'):
         team_id, _, team_name = re.match(r'(\d{3}) (\w*) +(.*)', team_data).groups()
         if not any(['Backup' in team_name, 'VGL' in team_name, 'Invitational' in team_name]):
-            comp_entries.append(comp_entry(team_id, index, index_4cc, 9))
+            comp_entries.append(comp_entry(int(team_id), index, index_4cc, 9))
             index_4cc += 1
         else:
             if 'Backup' in team_name:
-                comp_entries.append(comp_entry(team_id, index, index_bak, 10))
+                comp_entries.append(comp_entry(int(team_id), index, index_bak, 12))
                 index_bak += 1
             elif 'VGL' in team_name:
-                comp_entries.append(comp_entry(team_id, index, index_vgl, 8))
+                comp_entries.append(comp_entry(int(team_id), index, index_vgl, 11))
                 index_vgl += 1
             elif 'Invitational' in team_name:
-                comp_entries.append(comp_entry(team_id, index, index_inv, 11))
+                comp_entries.append(comp_entry(int(team_id), index, index_inv, 10))
                 index_inv += 1
         index += 1
 
