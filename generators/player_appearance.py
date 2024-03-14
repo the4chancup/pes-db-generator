@@ -6,16 +6,23 @@ def player_appearance_gen(pes_ver: int, team_amount: int, output_loc: str):
     player_appearances = []
 
     if pes_ver == 15:
-        appearance_bin = open(r'bin\PlayerAppearance_Base_15.bin', 'rb').read()
-    elif pes_ver in [16, 17, 18, 19, 20, 21]:
-        appearance_bin = open(r'bin\PlayerAppearance_Base_16.bin', 'rb').read()
+        try:
+            appearance_bin = open(r'bin\PlayerAppearance_Base_15.bin', 'rb').read()
+        except FileNotFoundError:
+            appearance_bin = open(r'generators\bin\PlayerAppearance_Base_15.bin', 'rb').read()
+
+    elif pes_ver in range(15, 22):
+        try:
+            appearance_bin = open(r'bin\PlayerAppearance_Base_16.bin', 'rb').read()
+        except FileNotFoundError:
+            appearance_bin = open(r'generators\bin\PlayerAppearance_Base_16.bin', 'rb').read()
     else:
         raise ValueError('Unsupported PES Version.')
 
     for _ in range(team_amount):
         player_index = 1
         for _ in range(23):
-            player_id = int('{}{}'.format(team_id, f'0{player_index}' if player_index < 10 else player_index))
+            player_id = int(f'{team_id}{f'0{player_index}' if player_index < 10 else player_index}')
             appearance_entry = [
                 struct.pack('<I', player_id),  # Player ID
                 appearance_bin[4:]

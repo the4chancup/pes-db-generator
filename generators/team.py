@@ -189,7 +189,7 @@ def team_entry_20(team_id: int, team_abbreviation: str, team_name: str) -> bytes
     return b''.join(team_entry)
 
 
-def team_gen(pes_ver: int, team_list: str, output_loc: str):
+def team_gen(pes_ver: int, team_list: list[str], output_loc: str):
     teams = []
 
     if pes_ver in [15, 16, 17, 18]:
@@ -201,7 +201,7 @@ def team_gen(pes_ver: int, team_list: str, output_loc: str):
     else:
         raise ValueError('Unsupported PES Version.')
 
-    for team_data in team_list.split('\n'):
+    for team_data in team_list:
         team_id, team_abbreviation, team_name = re.match(r'(\d{3}) (\w*) +(.*)', team_data).groups()
         teams.append(team_entry(int(team_id), team_abbreviation, team_name))
 
@@ -210,7 +210,7 @@ def team_gen(pes_ver: int, team_list: str, output_loc: str):
 
 if __name__ == '__main__':
     pes_version = input('Enter the PES version of what the "Team.bin" needs to be generated for: ')
-    data = open('../team_list.txt', 'r').read()
+    data = open('../team_list.txt', 'r').read().split('\n')
     if any(['15' in pes_version, '16' in pes_version, '17' in pes_version, '18' in pes_version]):
         team_gen(15, data, 'Team.bin')
     elif '19' in pes_version:

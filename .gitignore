@@ -1,5 +1,7 @@
 .idea/
 venv/
+database_*/
+generators/__pycache__
 Coach.bin
 CompetitionEntry.bin
 Player.bin

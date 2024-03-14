@@ -1,6 +1,9 @@
 # pes-db-generator
 A collection of scripts to generate a database for the Pro Evolution Soccer series of games.
 
+## Requirements
+* Python 3.12+
+
 ## Quirks
 ### Pro Evolution Soccer 2019 
 #### EDIT File
