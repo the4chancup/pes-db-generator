@@ -73,7 +73,7 @@ def player_gen(pes_ver: int, team_amount: int, output_loc: str):
     for _ in range(team_amount):
         player_index = 1
         for _ in range(23):
-            player_id = int(f'{team_id}{f'0{player_index}' if player_index < 10 else player_index}')
+            player_id = int(f'{team_id}{player_index:02d}')
             players.append(player_entry(player_id, player_bin))
             player_index += 1
         team_id += 1

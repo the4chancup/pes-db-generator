@@ -15,7 +15,6 @@ def gen_multiple_blank_files(output_loc: str, skip_zero: bool = False):
             pass
         else:
             open(output_loc.format('' if i == 0 else i), 'wb').write(b'')
-    return
 
 
 def generate_database(pes_ver: int, team_list: list[str]):
