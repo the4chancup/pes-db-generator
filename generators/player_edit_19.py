@@ -6,9 +6,9 @@ players = []
 if __name__ == "__main__":
     with open("../team_list.txt", "r", encoding="utf-8") as team_list:
         amount = len(team_list.read().split("\n"))
-    with open(r"Bin Files\Player_Edit_Base_19.bin", "rb") as player_file:
+    with open(r"bin\Player_Edit_Base_19.bin", "rb") as player_file:
         player_bin = player_file.read()
-    with open(r"Bin Files\PlayerAppearance_Base_16.bin", "rb") as appear_file:
+    with open(r"bin\PlayerAppearance_Base_16.bin", "rb") as appear_file:
         appear_bin = appear_file.read()
 
     for _ in range(amount):
