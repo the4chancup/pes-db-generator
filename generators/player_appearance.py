@@ -1,52 +1,59 @@
 import struct
 
 
-def player_appearance_gen(pes_ver: int, team_amount: int, output_loc: str):
+def player_appear_gen(pes_ver: int, team_amount: int, output_loc: str):
+    if pes_ver not in range(15, 22):
+        raise NotImplementedError("Unsupported PES Version.")
+
+    appears = []
     team_id = 701
-    player_appearances = []
+    file_ver = 16 if pes_ver in range(16, 22) else 15
 
-    if pes_ver == 15:
-        try:
-            appearance_bin = open(r'bin\PlayerAppearance_Base_15.bin', 'rb').read()
-        except FileNotFoundError:
-            appearance_bin = open(r'generators\bin\PlayerAppearance_Base_15.bin', 'rb').read()
-
-    elif pes_ver in range(15, 22):
-        try:
-            appearance_bin = open(r'bin\PlayerAppearance_Base_16.bin', 'rb').read()
-        except FileNotFoundError:
-            appearance_bin = open(r'generators\bin\PlayerAppearance_Base_16.bin', 'rb').read()
-    else:
-        raise ValueError('Unsupported PES Version.')
+    try:
+        with open(rf"bin\PlayerAppearance_Base_{file_ver}", "rb") as appear_file:
+            appear_bin = appear_file.read()
+    except FileNotFoundError:
+        with open(
+            rf"generators\bin\PlayerAppearance_Base_{file_ver}.bin", "rb"
+        ) as appear_file:
+            appear_bin = appear_file.read()
 
     for _ in range(team_amount):
         player_index = 1
         for _ in range(23):
-            player_id = int(f'{team_id}{player_index:02d}')
-            appearance_entry = [
-                struct.pack('<I', player_id),  # Player ID
-                appearance_bin[4:]
+            player_id = int(f"{team_id}{player_index:02d}")
+            appear_entry = [
+                struct.pack("<I", player_id),  # Player ID
+                appear_bin[4:],
             ]
-            player_appearances.append(b''.join(appearance_entry))
+            appears.append(b"".join(appear_entry))
             player_index += 1
         team_id += 1
 
-    open(output_loc, 'wb').write(b''.join(player_appearances))
+    with open(output_loc, "wb") as output_file:
+        output_file.write(b"".join(appears))
 
 
-if __name__ == '__main__':
-    pes_version = input('Enter the PES version of what the "Player.bin" needs to be generated for: ')
-    amount = len(open('../team_list.txt', 'r').read().split('\n'))
+if __name__ == "__main__":
+    pes_version = input(
+        'Enter the PES version of what the "Player.bin" needs to be generated for: '
+    )
+    with open("../team_list.txt", "r", encoding="utf-8") as f:
+        amount = len(f.read().split("\n"))
     sixteen_plus_check = any(
         [
-            '16' in pes_version, '17' in pes_version, '18' in pes_version,
-            '19' in pes_version, '20' in pes_version, '21' in pes_version
+            "16" in pes_version,
+            "17" in pes_version,
+            "18" in pes_version,
+            "19" in pes_version,
+            "20" in pes_version,
+            "21" in pes_version,
         ]
     )
 
-    if '15' in pes_version:
-        player_appearance_gen(15, amount, 'PlayerAppearance.bin')
+    if "15" in pes_version:
+        player_appear_gen(15, amount, "PlayerAppearance.bin")
     elif sixteen_plus_check:
-        player_appearance_gen(16, amount, 'PlayerAppearance.bin')
+        player_appear_gen(16, amount, "PlayerAppearance.bin")
     else:
-        raise ValueError('Unsupported PES Version.')
+        raise NotImplementedError("Unsupported PES Version.")

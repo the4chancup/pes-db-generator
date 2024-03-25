@@ -1,4 +1,5 @@
 .idea/
+.ruff_cache/
 venv/
 database_*/
 generators/__pycache__
