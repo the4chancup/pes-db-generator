@@ -10,7 +10,7 @@ def coach_gen(pes_ver: int, team_amount: int, output_loc: str):
     elif pes_ver in [19, 20, 21]:
         pad = 2
     else:
-        raise ValueError("Unsupported PES Version.")
+        raise NotImplementedError("Unsupported PES Version.")
 
     for _ in range(team_amount):
         coach_entry = [
@@ -47,4 +47,4 @@ if __name__ == "__main__":
     elif any(["19" in pes_version, "20" in pes_version, "21" in pes_version]):
         coach_gen(19, amount, "Coach.bin")
     else:
-        raise ValueError("Unsupported PES Version.")
+        raise NotImplementedError("Unsupported PES Version.")
