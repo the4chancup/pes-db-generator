@@ -36,16 +36,10 @@ if __name__ == "__main__":
     )
     with open("../team_list.txt", "r", encoding="utf-8") as f:
         amount = len(f.read().split("\n"))
-    if any(
-        [
-            "15" in pes_version,
-            "16" in pes_version,
-            "17" in pes_version,
-            "18" in pes_version,
-        ]
-    ):
-        player_assign_gen(15, amount, "PlayerAssignment.bin")
-    elif any(["19" in pes_version, "20" in pes_version, "21" in pes_version]):
-        player_assign_gen(19, amount, "PlayerAssignment.bin")
-    else:
-        raise NotImplementedError("Unsupported PES Version.")
+
+    for ver in range(15, 22):
+        if str(ver) in pes_version:
+            player_assign_gen(ver, amount, "PlayerAssignment.bin")
+            exit(0)
+
+    raise NotImplementedError("Unsupported PES Version.")

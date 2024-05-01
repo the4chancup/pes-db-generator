@@ -126,13 +126,15 @@ def generate_database(pes_ver: int, team_list: list[str]):
             ]
         )
 
-    file_requirements_path = ""
-    if pes_ver == 15:
-        file_requirements_path = "Data/dt10.cpk/common/etc/pesdb/"
-    elif pes_ver in [16, 17]:
-        file_requirements_path = "Data/dt10_win.cpk/common/etc/pesdb/"
-    elif pes_ver in range(18, 22):
-        file_requirements_path = "Data/dt00_x64.cpk/common/etc/pesdb/"
+    match pes_ver:
+        case 15:
+            file_requirements_path = "Data/dt10.cpk/common/etc/pesdb/"
+        case 16 | 17:
+            file_requirements_path = "Data/dt10_win.cpk/common/etc/pesdb/"
+        case 18 | 19 | 20 | 21:
+            file_requirements_path = "Data/dt00_x64.cpk/common/etc/pesdb/"
+        case _:
+            file_requirements_path = ""
 
     pes_ver_str = (
         f"Pro Evolution Soccer 20{pes_ver}"
@@ -159,17 +161,9 @@ if __name__ == "__main__":
     )
     with open("team_list.txt", "r", encoding="utf-8") as f:
         data = f.read().split("\n")
-    if "15" in pes_version:
-        generate_database(15, data)
-    elif "16" in pes_version:
-        generate_database(16, data)
-    elif "17" in pes_version:
-        generate_database(17, data)
-    elif "18" in pes_version:
-        generate_database(18, data)
-    elif "19" in pes_version:
-        generate_database(19, data)
-    elif ("20" in pes_version) or ("21" in pes_version):
-        generate_database(20, data)
-    else:
-        raise NotImplementedError("Unsupported PES Version.")
+
+    for ver in range(15, 22):
+        if str(ver) in pes_version:
+            generate_database(ver, data)
+
+    raise NotImplementedError("Unsupported PES Version.")

@@ -2,50 +2,34 @@ import re
 import struct
 
 
-def comp_entry_15(
-    team_id: int, entry_index: int, comp_index: int, comp_id: int
-) -> bytes:
-    competition_entry = [
-        struct.pack("<I", team_id),  # Team ID
-        bytearray(2),
-        struct.pack("<H", entry_index),  # Entry ID
-        bytearray(1),
-        struct.pack("B", comp_index),  # Entry Order
-        struct.pack("<H", comp_id),  # Competition ID
-    ]
-    return b"".join(competition_entry)
-
-
-def comp_entry_19(
-    team_id: int, entry_index: int, comp_index: int, comp_id: int
-) -> bytes:
-    competition_entry = [
-        struct.pack("<I", team_id),  # Team ID
-        bytearray(2),
-        struct.pack("<H", entry_index),  # Entry ID
-        struct.pack("<H", comp_id),  # Competition ID
-        struct.pack("<H", comp_index),  # Entry Order
-    ]
-    return b"".join(competition_entry)
-
-
 def comp_entry_gen(pes_ver: int, team_list: list[str], output_loc: str):
+    if pes_ver not in range(15, 22):
+        raise NotImplementedError("Unsupported PES Version.")
+
     index = 1
     index_4cc = 1
     index_bak = 1
     index_vgl = 1
     index_inv = 1
     comp_entries = []
+    regex = re.compile(r"(\d{3}) (\w*) +(.*)")
 
-    if pes_ver in [15, 16, 17, 18]:
-        comp_entry = comp_entry_15
-    elif pes_ver in [19, 20, 21]:
-        comp_entry = comp_entry_19
-    else:
-        raise NotImplementedError("Unsupported PES Version.")
+    def comp_entry(tid: int, entry_idx: int, comp_idx: int, comp_id: int) -> bytes:
+        entry = [
+            struct.pack("<I", tid),  # Team ID
+            bytearray(2),
+            struct.pack("<H", entry_idx),  # Entry ID
+            struct.pack("<H", comp_id),  # Competition ID
+            struct.pack("<H", comp_idx),  # Entry Order
+        ]
+
+        if pes_ver in range(15, 19):
+            entry.insert(3, b"\x00")
+
+        return b"".join(entry)
 
     for team_data in team_list:
-        team_id, _, team_name = re.match(r"(\d{3}) (\w*) +(.*)", team_data).groups()
+        team_id, _, team_name = regex.match(team_data).groups()
         if not any(
             ["Backup" in team_name, "VGL" in team_name, "Invitational" in team_name]
         ):
@@ -73,16 +57,10 @@ if __name__ == "__main__":
     )
     with open("../team_list.txt", "r", encoding="utf-8") as f:
         data = f.read().split("\n")
-    if any(
-        [
-            "15" in pes_version,
-            "16" in pes_version,
-            "17" in pes_version,
-            "18" in pes_version,
-        ]
-    ):
-        comp_entry_gen(15, data, "CompetitionEntry.bin")
-    elif any(["19" in pes_version, "20" in pes_version, "21" in pes_version]):
-        comp_entry_gen(19, data, "CompetitionEntry.bin")
-    else:
-        raise NotImplementedError("Unsupported PES Version.")
+
+    for ver in range(15, 22):
+        if str(ver) in pes_version:
+            comp_entry_gen(ver, data, "CompetitionEntry.bin")
+            exit(0)
+
+    raise NotImplementedError("Unsupported PES Version.")

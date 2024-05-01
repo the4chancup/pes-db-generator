@@ -40,20 +40,10 @@ if __name__ == "__main__":
     )
     with open("../team_list.txt", "r", encoding="utf-8") as f:
         amount = len(f.read().split("\n"))
-    sixteen_plus_check = any(
-        [
-            "16" in pes_version,
-            "17" in pes_version,
-            "18" in pes_version,
-            "19" in pes_version,
-            "20" in pes_version,
-            "21" in pes_version,
-        ]
-    )
 
-    if "15" in pes_version:
-        player_appear_gen(15, amount, "PlayerAppearance.bin")
-    elif sixteen_plus_check:
-        player_appear_gen(16, amount, "PlayerAppearance.bin")
-    else:
-        raise NotImplementedError("Unsupported PES Version.")
+    for ver in range(15, 22):
+        if str(ver) in pes_version:
+            player_appear_gen(ver, amount, "PlayerAppearance.bin")
+            exit(0)
+
+    raise NotImplementedError("Unsupported PES Version.")
