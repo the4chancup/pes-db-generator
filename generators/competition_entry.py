@@ -19,12 +19,24 @@ def comp_entry_gen(pes_ver: int, team_list: list[str], output_loc: str):
             struct.pack("<I", tid),  # Team ID
             bytearray(2),
             struct.pack("<H", entry_idx),  # Entry ID
-            struct.pack("<H", comp_id),  # Competition ID
-            struct.pack("<H", comp_idx),  # Entry Order
         ]
 
-        if pes_ver in range(15, 19):
-            entry.insert(3, b"\x00")
+        match pes_ver:
+            case 15 | 16 | 17 | 18:
+                entry.extend(
+                    [
+                        bytearray(1),
+                        struct.pack("B", comp_idx),  # Entry Order
+                        struct.pack("<H", comp_id),  # Competition ID
+                    ]
+                )
+            case 19 | 20 | 21:
+                entry.extend(
+                    [
+                        struct.pack("<H", comp_id),  # Competition ID
+                        struct.pack("<H", comp_idx),  # Entry Order
+                    ]
+                )
 
         return b"".join(entry)
 
