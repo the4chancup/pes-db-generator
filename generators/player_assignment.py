@@ -10,19 +10,19 @@ def player_assign_gen(pes_ver: int, team_amount: int, output_loc: str):
     assignments = []
 
     for _ in range(team_amount):
-        player_index = 1
+        player_idx = 1
         for _ in range(23):
-            player_id = int(f"{team_id}{player_index:02d}")
+            player_id = int(f"{team_id}{player_idx:02d}")
             assign_entry = [
                 struct.pack("<I", assign_index),  # Assign Index
                 struct.pack("<I", player_id),  # Player ID
                 struct.pack("<I", team_id),  # Team ID
                 struct.pack(
-                    "<I", player_index - 1 if pes_ver in [19, 20, 21] else player_index
+                    "<I", player_idx - 1 if pes_ver in [19, 20, 21] else player_idx
                 ),  # Player Team Order
             ]
-            assignments.append(b"".join(assign_entry))
-            player_index += 1
+            assignments += [b"".join(assign_entry)]
+            player_idx += 1
             assign_index += 1
         team_id += 1
 

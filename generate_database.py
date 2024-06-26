@@ -12,7 +12,7 @@ from generators.team import team_gen
 def gen_multiple_blank_files(output_loc: str, skip_zero: bool = False):
     for i in range(7):
         if skip_zero and i == 0:
-            pass
+            continue
         else:
             with open(output_loc.format("" if i == 0 else i), "wb") as blank_file:
                 blank_file.write(b"")

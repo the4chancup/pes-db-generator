@@ -19,10 +19,11 @@ def coach_gen(pes_ver: int, team_amount: int, output_loc: str):
             "MANAGER".encode("utf-8"),  # Manager English Name
             bytearray(39),
         ]
-        coaches.append(b"".join(coach_entry))
+        coaches += [b"".join(coach_entry)]
         coach_id += 1
 
     with open(output_loc, "wb") as output_file:
+        print(coaches)
         output_file.write(b"".join(coaches))
 
 

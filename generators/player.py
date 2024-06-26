@@ -31,7 +31,7 @@ def player_gen(pes_ver: int, team_amount: int, output_loc: str):
         player_index = 1
         for _ in range(23):
             player_id = int(f"{team_id}{player_index:02d}")
-            players.append(b"".join([padding, struct.pack("<I", player_id), binary]))
+            players += [padding + struct.pack("<I", player_id) + binary]
             player_index += 1
         team_id += 1
 

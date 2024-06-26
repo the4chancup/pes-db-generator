@@ -23,20 +23,16 @@ def comp_entry_gen(pes_ver: int, team_list: list[str], output_loc: str):
 
         match pes_ver:
             case 15 | 16 | 17 | 18:
-                entry.extend(
-                    [
-                        bytearray(1),
-                        struct.pack("B", comp_idx),  # Entry Order
-                        struct.pack("<H", comp_id),  # Competition ID
-                    ]
-                )
+                entry += [
+                    bytearray(1),
+                    struct.pack("B", comp_idx),  # Entry Order
+                    struct.pack("<H", comp_id),  # Competition ID
+                ]
             case 19 | 20 | 21:
-                entry.extend(
-                    [
-                        struct.pack("<H", comp_id),  # Competition ID
-                        struct.pack("<H", comp_idx),  # Entry Order
-                    ]
-                )
+                entry += [
+                    struct.pack("<H", comp_id),  # Competition ID
+                    struct.pack("<H", comp_idx),  # Entry Order
+                ]
 
         return b"".join(entry)
 
@@ -45,17 +41,17 @@ def comp_entry_gen(pes_ver: int, team_list: list[str], output_loc: str):
         if not any(
             ["Backup" in team_name, "VGL" in team_name, "Invitational" in team_name]
         ):
-            comp_entries.append(comp_entry(int(team_id), index, index_4cc, 9))
+            comp_entries += [comp_entry(int(team_id), index, index_4cc, 9)]
             index_4cc += 1
         else:
             if "Backup" in team_name:
-                comp_entries.append(comp_entry(int(team_id), index, index_bak, 12))
+                comp_entries += [comp_entry(int(team_id), index, index_bak, 12)]
                 index_bak += 1
             elif "VGL" in team_name:
-                comp_entries.append(comp_entry(int(team_id), index, index_vgl, 11))
+                comp_entries += [comp_entry(int(team_id), index, index_vgl, 11)]
                 index_vgl += 1
             elif "Invitational" in team_name:
-                comp_entries.append(comp_entry(int(team_id), index, index_inv, 10))
+                comp_entries += [comp_entry(int(team_id), index, index_inv, 10)]
                 index_inv += 1
         index += 1
 

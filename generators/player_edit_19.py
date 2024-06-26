@@ -24,7 +24,7 @@ if __name__ == "__main__":
                 appear_bin[4:],
                 bytearray(4),
             ]
-            players.append(b"".join(player_entry))
+            players += b"".join(player_entry)
             player_index += 1
         team_id += 1
 

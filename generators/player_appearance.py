@@ -10,11 +10,11 @@ def player_appear_gen(pes_ver: int, team_amount: int, output_loc: str):
     file_ver = 16 if pes_ver in range(16, 22) else 15
 
     try:
-        with open(rf"bin\PlayerAppearance_Base_{file_ver}", "rb") as appear_file:
+        with open(f"bin/PlayerAppearance_Base_{file_ver}", "rb") as appear_file:
             appear_bin = appear_file.read()
     except FileNotFoundError:
         with open(
-            rf"generators\bin\PlayerAppearance_Base_{file_ver}.bin", "rb"
+            f"generators/bin/PlayerAppearance_Base_{file_ver}.bin", "rb"
         ) as appear_file:
             appear_bin = appear_file.read()
 
@@ -22,11 +22,7 @@ def player_appear_gen(pes_ver: int, team_amount: int, output_loc: str):
         player_index = 1
         for _ in range(23):
             player_id = int(f"{team_id}{player_index:02d}")
-            appear_entry = [
-                struct.pack("<I", player_id),  # Player ID
-                appear_bin[4:],
-            ]
-            appears.append(b"".join(appear_entry))
+            appears += [struct.pack("<I", player_id) + appear_bin[4:]]
             player_index += 1
         team_id += 1
 
