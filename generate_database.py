@@ -26,11 +26,11 @@ def generate_database(pes_ver: int, team_list: list[str]):
     os.makedirs(appear_loc, exist_ok=True)
 
     coach_gen(pes_ver, len(team_list), db_loc + "Coach.bin")
-    team_gen(pes_ver, team_list, db_loc + "Team.bin")
     comp_entry_gen(pes_ver, team_list, db_loc + "CompetitionEntry.bin")
     player_gen(pes_ver, len(team_list), db_loc + "Player.bin")
-    player_assign_gen(pes_ver, len(team_list), db_loc + "PlayerAssignment.bin")
     player_appear_gen(pes_ver, len(team_list), appear_loc + "PlayerAppearance.bin")
+    player_assign_gen(pes_ver, len(team_list), db_loc + "PlayerAssignment.bin")
+    team_gen(pes_ver, team_list, db_loc + "Team.bin")
 
     singular_blank_files = []
     if pes_ver in range(15, 18):
@@ -64,7 +64,7 @@ def generate_database(pes_ver: int, team_list: list[str]):
         )
     if pes_ver in [19, 20, 21]:
         singular_blank_files.extend(["PlayerWeekly.bin", "TeamWeekly.bin"])
-    if pes_ver in [20, 21]:
+    if pes_ver == 21:
         singular_blank_files.extend(
             [
                 "CoachDeleteList.bin",
@@ -82,7 +82,7 @@ def generate_database(pes_ver: int, team_list: list[str]):
         with open(db_loc + blank_files, "wb") as blank_file:
             blank_file.write(b"")
 
-    if pes_ver in range(15, 20):
+    if pes_ver in range(15, 21):
         gen_multiple_blank_files(db_loc + "Coach{}.bin", True)
         gen_multiple_blank_files(db_loc + "CoachDeleteList{}.bin")
         gen_multiple_blank_files(db_loc + "CompetitionEntry{}.bin", True)
@@ -98,11 +98,7 @@ def generate_database(pes_ver: int, team_list: list[str]):
         gen_multiple_blank_files(db_loc + "Team{}.bin", True)
 
     file_requirements = []
-    if pes_ver in range(15, 20):
-        file_requirements.extend(
-            [f"Country{i}.bin" if i != 0 else "Country.bin" for i in range(7)]
-        )
-    if pes_ver in range(16, 20):
+    if pes_ver in range(16, 21):
         file_requirements.extend(
             [f"Competition{i}.bin" if i != 0 else "Competition.bin" for i in range(7)]
             + [
@@ -116,7 +112,11 @@ def generate_database(pes_ver: int, team_list: list[str]):
                 for i in range(7)
             ]
         )
-    if pes_ver in [20, 21]:
+    if pes_ver in range(15, 21):
+        file_requirements.extend(
+            [f"Country{i}.bin" if i != 0 else "Country.bin" for i in range(7)]
+        )
+    if pes_ver == 21:
         file_requirements.extend(
             [
                 "Country.bin",
