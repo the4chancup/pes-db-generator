@@ -10,11 +10,11 @@ def player_appear_gen(pes_ver: int, team_amount: int, output_loc: str):
     file_ver = 16 if pes_ver in range(16, 22) else 15
 
     try:
-        with open(f"bin/PlayerAppearance_Base_{file_ver}", "rb") as appear_file:
+        with open(rf"bin/PlayerAppearance_Base_{file_ver}", "rb") as appear_file:
             appear_bin = appear_file.read()
     except FileNotFoundError:
         with open(
-            f"generators/bin/PlayerAppearance_Base_{file_ver}.bin", "rb"
+            rf"generators/bin/PlayerAppearance_Base_{file_ver}.bin", "rb"
         ) as appear_file:
             appear_bin = appear_file.read()
 
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     pes_version = input(
         'Enter the PES version of what the "Player.bin" needs to be generated for: '
     )
-    with open("../team_list.txt", "r", encoding="utf-8") as f:
+    with open(r"../team_list.txt", "r", encoding="utf-8") as f:
         amount = len(f.read().split("\n"))
 
     for ver in range(15, 22):

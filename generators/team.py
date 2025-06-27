@@ -134,7 +134,7 @@ if __name__ == "__main__":
     pes_version = input(
         'Enter the PES version of what the "Team.bin" needs to be generated for: '
     )
-    with open("../team_list.txt", "r", encoding="utf-8") as f:
+    with open(r"../team_list.txt", "r", encoding="utf-8") as f:
         data = f.read().split("\n")
 
     for ver in range(15, 22):

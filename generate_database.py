@@ -19,8 +19,8 @@ def gen_multiple_blank_files(output_loc: str, skip_zero: bool = False):
 
 
 def generate_database(pes_ver: int, team_list: list[str]):
-    db_loc = f"database_{pes_ver}/common/etc/pesdb/"
-    appear_loc = f"database_{pes_ver}/common/character0/model/character/appearance/"
+    db_loc = rf"database_{pes_ver}/common/etc/pesdb/"
+    appear_loc = rf"database_{pes_ver}/common/character0/model/character/appearance/"
 
     os.makedirs(db_loc, exist_ok=True)
     os.makedirs(appear_loc, exist_ok=True)
@@ -34,49 +34,48 @@ def generate_database(pes_ver: int, team_list: list[str]):
 
     singular_blank_files = []
     if pes_ver in range(15, 18):
-        singular_blank_files.extend(
-            [
-                "InstallVersionBallDlcAs.bin",
-                "InstallVersionBallDlcEu.bin",
-                "InstallVersionBallDlcJp.bin",
-                "InstallVersionBallDlcUs.bin",
-                "InstallVersionBallDp.bin",
-                "InstallVersionBootsDlcAs.bin",
-                "InstallVersionBootsDlcEu.bin",
-                "InstallVersionBootsDlcJp.bin",
-                "InstallVersionBootsDlcUs.bin",
-                "InstallVersionBootsDp.bin",
-                "InstallVersionGloveDlcAs.bin",
-                "InstallVersionGloveDlcEu.bin",
-                "InstallVersionGloveDlcJp.bin",
-                "InstallVersionGloveDlcUs.bin",
-                "InstallVersionGloveDp.bin",
-                "InstallVersionStadiumDlcAs.bin",
-                "InstallVersionStadiumDlcEu.bin",
-                "InstallVersionStadiumDlcJp.bin",
-                "InstallVersionStadiumDlcUs.bin",
-                "InstallVersionStadiumDp.bin",
-            ]
-        )
+        singular_blank_files += [
+            "InstallVersionBallDlcAs.bin",
+            "InstallVersionBallDlcEu.bin",
+            "InstallVersionBallDlcJp.bin",
+            "InstallVersionBallDlcUs.bin",
+            "InstallVersionBallDp.bin",
+            "InstallVersionBootsDlcAs.bin",
+            "InstallVersionBootsDlcEu.bin",
+            "InstallVersionBootsDlcJp.bin",
+            "InstallVersionBootsDlcUs.bin",
+            "InstallVersionBootsDp.bin",
+            "InstallVersionGloveDlcAs.bin",
+            "InstallVersionGloveDlcEu.bin",
+            "InstallVersionGloveDlcJp.bin",
+            "InstallVersionGloveDlcUs.bin",
+            "InstallVersionGloveDp.bin",
+            "InstallVersionStadiumDlcAs.bin",
+            "InstallVersionStadiumDlcEu.bin",
+            "InstallVersionStadiumDlcJp.bin",
+            "InstallVersionStadiumDlcUs.bin",
+            "InstallVersionStadiumDp.bin",
+        ]
     if pes_ver in [16, 20, 21]:
-        singular_blank_files.extend(
-            ["MyclubCoach.bin", "MyclubTactics.bin", "MyclubTacticsFormation.bin"]
-        )
+        singular_blank_files += [
+            "MyclubCoach.bin",
+            "MyclubTactics.bin",
+            "MyclubTacticsFormation.bin",
+        ]
+
     if pes_ver in [19, 20, 21]:
-        singular_blank_files.extend(["PlayerWeekly.bin", "TeamWeekly.bin"])
+        singular_blank_files += ["PlayerWeekly.bin", "TeamWeekly.bin"]
     if pes_ver == 21:
-        singular_blank_files.extend(
-            [
-                "CoachDeleteList.bin",
-                "Derby.bin",
-                "InstallVersionPlayer.bin",
-                "PlayerDeleteList.bin",
-                "SpecialPlayerAssignment.bin",
-                "SpecialPlayerAssignmentKind.bin",
-                "Tactics.bin",
-                "TacticsFormation.bin",
-            ]
-        )
+        singular_blank_files += [
+            "CoachDeleteList.bin",
+            "Derby.bin",
+            "InstallVersionPlayer.bin",
+            "PlayerDeleteList.bin",
+            "SpecialPlayerAssignment.bin",
+            "SpecialPlayerAssignmentKind.bin",
+            "Tactics.bin",
+            "TacticsFormation.bin",
+        ]
 
     for blank_files in singular_blank_files:
         with open(db_loc + blank_files, "wb") as blank_file:
@@ -99,32 +98,28 @@ def generate_database(pes_ver: int, team_list: list[str]):
 
     file_requirements = []
     if pes_ver in range(16, 21):
-        file_requirements.extend(
-            [f"Competition{i}.bin" if i != 0 else "Competition.bin" for i in range(7)]
-            + [
-                f"CompetitionKind{i}.bin" if i != 0 else "CompetitionKind.bin"
-                for i in range(7)
-            ]
-            + [
-                f"CompetitionRegulation{i}.bin"
-                if i != 0
-                else "CompetitionRegulation.bin"
-                for i in range(7)
-            ]
-        )
+        file_requirements += [
+            f"Competition{i}.bin" if i != 0 else "Competition.bin" for i in range(7)
+        ]
+        file_requirements += [
+            f"CompetitionKind{i}.bin" if i != 0 else "CompetitionKind.bin"
+            for i in range(7)
+        ]
+        file_requirements += [
+            f"CompetitionRegulation{i}.bin" if i != 0 else "CompetitionRegulation.bin"
+            for i in range(7)
+        ]
     if pes_ver in range(15, 21):
-        file_requirements.extend(
-            [f"Country{i}.bin" if i != 0 else "Country.bin" for i in range(7)]
-        )
+        file_requirements += [
+            f"Country{i}.bin" if i != 0 else "Country.bin" for i in range(7)
+        ]
     if pes_ver == 21:
-        file_requirements.extend(
-            [
-                "Country.bin",
-                "Competition.bin",
-                "CompetitionKind.bin",
-                "CompetitionRegulation.bin",
-            ]
-        )
+        file_requirements += [
+            "Country.bin",
+            "Competition.bin",
+            "CompetitionKind.bin",
+            "CompetitionRegulation.bin",
+        ]
 
     match pes_ver:
         case 15:
@@ -143,11 +138,11 @@ def generate_database(pes_ver: int, team_list: list[str]):
     )
 
     print(
-        f"\n\33[5m\33[33m{"="*41}WARNING{"="*41}\33[0m"
+        f"\n\33[5m\33[33m{'=' * 41}WARNING{'=' * 41}\33[0m"
         "\nThis script doesn't generate a complete database."
         f"\nSome files are required to be procured from the {pes_ver_str} game files due to legal reasons."
-        f"\nThe files required are:\n    {"\n    ".join(file_requirements)}"
-        f"\nWhich are located in \"{file_requirements_path}\""
+        f"\nThe files required are:\n    {'\n    '.join(file_requirements)}"
+        f'\nWhich are located in "{file_requirements_path}"'
     )
     input("\n\nPress any key to continue...")
     exit(0)

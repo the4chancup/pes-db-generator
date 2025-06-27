@@ -23,7 +23,6 @@ def coach_gen(pes_ver: int, team_amount: int, output_loc: str):
         coach_id += 1
 
     with open(output_loc, "wb") as output_file:
-        print(coaches)
         output_file.write(b"".join(coaches))
 
 
